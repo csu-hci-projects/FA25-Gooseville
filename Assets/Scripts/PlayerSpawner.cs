@@ -3,13 +3,13 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour
 {
 
-    public GameObject[] playerPrefabs;
-    public Transform spawnPoint;
+    public GameObject playerPrefab;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-            int playerChoice = PlayerPrefs.GetInt("SelectedCharacter", 0);
-            Instantiate(playerPrefabs[playerChoice], spawnPoint.position, Quaternion.identity);
+            // PlayerPrefs.SetInt("SelectedCharacter", 0); // here until players have choice of character
+            // int playerChoice = PlayerPrefs.GetInt("SelectedCharacter", 0);
+            Instantiate(playerPrefab, new Vector2(0,0), Quaternion.identity);
     }
 }

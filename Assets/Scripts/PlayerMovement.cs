@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float speed = 5.0f;
+    [SerializeField] float speed = 4.0f;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     public bool canMove;

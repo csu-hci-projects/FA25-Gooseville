@@ -6,20 +6,41 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/old/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/TitleScreen.unity
+    path: Assets/Scenes/S0_Title.unity
     guid: 7d00847852079a946be20cc60a247052
-  - enabled: 1
-    path: Assets/Scenes/CharacterSelection.unity
+  - enabled: 0
+    path: Assets/Scenes/old/CharacterSelection.unity
     guid: 6dcb1738845d4a94aaf90c3bba3d7c65
   - enabled: 1
-    path: Assets/Scenes/Introduction.unity
+    path: Assets/Scenes/S1_Intro.unity
     guid: 11d77c15adbe7f846a3dcffe77dfe717
   - enabled: 1
-    path: Assets/Scenes/Overworld_port.unity
+    path: Assets/Scenes/B0_Port.unity
     guid: b98c845a564faa6438277f0c46f45487
+  - enabled: 1
+    path: Assets/Scenes/A0_Beach.unity
+    guid: 55e601016511c794f862bbf74499fead
+  - enabled: 1
+    path: Assets/Scenes/A1_Village0.unity
+    guid: 4bc405ad04c53fc46ae8911bd34f7450
+  - enabled: 1
+    path: Assets/Scenes/B1_Village1.unity
+    guid: 1ee6ec05f7b401f4082a7757430cc97d
+  - enabled: 1
+    path: Assets/Scenes/A2_Garden.unity
+    guid: 4908ade60d6b8b24da1e430bcce6c4df
+  - enabled: 1
+    path: Assets/Scenes/B2_Park.unity
+    guid: ca219f0e46ca7c6409b00be01727f1b0
+  - enabled: 1
+    path: Assets/Scenes/A3_Maze.unity
+    guid: e751a4281511b6c439e9068869499f35
+  - enabled: 1
+    path: Assets/Scenes/B3_Shop.unity
+    guid: 76f8dbc2b181d454b838e1a70f1bc58e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

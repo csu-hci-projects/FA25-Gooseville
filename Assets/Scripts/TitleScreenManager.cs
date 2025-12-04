@@ -6,7 +6,8 @@ public class TitleScreenManager : MonoBehaviour
     public void PlayGame()
     {
         Debug.Log("Play button pressed");
-        SceneManager.LoadScene("CharacterSelection");
+        // SceneManager.LoadScene("CharacterSelection"); // omitting character selection
+        SceneManager.LoadScene("S1_Intro");
     }
     
     public void ExitGame()

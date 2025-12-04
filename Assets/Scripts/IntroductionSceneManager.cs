@@ -18,11 +18,13 @@ public class IntroductionSceneManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   
+        // grabbing player data
         player = GameObject.FindGameObjectWithTag("Player");
         playerTransform = player.transform;
         playerRB = player.GetComponent<Rigidbody2D>();
         playerMovement = player.GetComponent<PlayerMovement>();
-        playerMovement.canMove = false;
+        // player cannot move during cutscene
+        // playerMovement.canMove = false;
         StartCoroutine(RunCutscene());
     }
 
@@ -62,20 +64,22 @@ public class IntroductionSceneManager : MonoBehaviour
         letterUI.OpenLetter();
         yield return new WaitUntil(() => !letterUI.gameObject.activeSelf);
 
+        // 6.a Store player spawn position in scene handler data class
+        SceneHandlerData.playerSpawnPos = new Vector2(-3,0);
         // 6. Player moves right (simulate walk)
-        Debug.Log("Player entering movement state");
-        Vector3 exitPos = new Vector3(11.5f, playerTransform.position.y, 0);
-        while (Vector3.Distance(playerTransform.position, exitPos) > 0.1f)
-        {
-            Debug.Log("Player moving");
-            // player.position = Vector3.MoveTowards(player.position, exitPos, 2f * Time.deltaTime);
-            playerRB.MovePosition(Vector2.MoveTowards(playerRB.position, exitPos, 2f * Time.deltaTime));
-            yield return null;
-        }
-        Debug.Log("Player done moving");
+        // Debug.Log("Player entering movement state");
+        // Vector3 exitPos = new Vector3(11.5f, playerTransform.position.y, 0);
+        // while (Vector3.Distance(playerTransform.position, exitPos) > 0.1f)
+        // {
+        //     Debug.Log("Player moving");
+        //     // player.position = Vector3.MoveTowards(player.position, exitPos, 2f * Time.deltaTime);
+        //     playerRB.MovePosition(Vector2.MoveTowards(playerRB.position, exitPos, 2f * Time.deltaTime));
+        //     yield return null;
+        // }
+        // Debug.Log("Player done moving");
 
         // 7. Fade to black
-        StartCoroutine(FadeController.Instance.FadeOut(1f));
+        // StartCoroutine(FadeController.Instance.FadeOut(1f));
         // fadePanel.gameObject.SetActive(true);
         // for (float t = 0; t < 1; t += Time.deltaTime)
         // {
@@ -85,7 +89,6 @@ public class IntroductionSceneManager : MonoBehaviour
 
         // 8. Load next scene
         playerMovement.canMove = true;
-        SceneManager.LoadScene("Overworld_Port");
     }
 
     public void OnPlayerClick()
