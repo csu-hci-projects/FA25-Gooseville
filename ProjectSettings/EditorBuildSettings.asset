@@ -41,6 +41,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/B3_Shop.unity
     guid: 76f8dbc2b181d454b838e1a70f1bc58e
+  - enabled: 1
+    path: Assets/Scenes/A1_AnkigsAbode0.unity
+    guid: cebf1f270704ad546ba331163499acd9
+  - enabled: 1
+    path: Assets/Scenes/A1_AnkigsAbode1.unity
+    guid: c474c03853b414842ba3dac7212ce536
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

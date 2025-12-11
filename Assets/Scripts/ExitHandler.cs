@@ -34,6 +34,17 @@ public class ExitHandler : MonoBehaviour
             Debug.Log("scene: " + currentSceneName + "\nexit pos: " + exitPos + "\nspawn pos: " + SceneHandlerData.playerSpawnPos);
             SceneManager.LoadScene(scenesNESW[1]);
         }
+        // ANKIGS ABODE (special case)
+        else if ((currentSceneName == "A1_AnkigsAbode0") && (exitPos.x >= 9f))
+        {
+            SceneHandlerData.playerSpawnPos = new Vector2(2.5f,-2.5f);
+            Debug.Log("scene: " + currentSceneName + "\nexit pos: " + exitPos + "\nspawn pos: " + SceneHandlerData.playerSpawnPos);
+            SceneManager.LoadScene(scenesNESW[1]);
+        }
+        else if ((currentSceneName == "A1_AnkigsAbode0") && (exitPos.x <= -9f) && (scenesNESW[3] == ""))
+        {
+            return;
+        }
         // NORTH
         else if ((exitPos.y >= 9f) && (scenesNESW[0] != ""))
         {
@@ -64,4 +75,15 @@ public class ExitHandler : MonoBehaviour
         }
 
     }
+
+    public string[] getExits()
+    {
+        return scenesNESW;
+    }
+
+    public void setExit(string scene, int i)
+    {
+        scenesNESW[i] = scene;
+    }
+
 }
