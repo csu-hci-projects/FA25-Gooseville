@@ -3,11 +3,11 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using Unity.VisualScripting;
 
-public class IntroductionSceneManager : MonoBehaviour
+public class Tutorial1Introduction : MonoBehaviour
 {
     [SerializeField] private CourierManager courier;
     [SerializeField] private DialogueManager dialogue;
-    [SerializeField] private LetterUI letterUI;
+    [SerializeField] private PaperUI letterUI;
     [SerializeField] private PlayerMovement playerMovement;
     private GameObject player;
     private Transform playerTransform;
@@ -30,12 +30,22 @@ public class IntroductionSceneManager : MonoBehaviour
 
     private IEnumerator RunCutscene()
     {
-        // 1. Courier walks in
+        // Tutorial / Information for player
+        playerClicked = false;
+        dialogue.ShowDialogue("Welcome to Gooseville! Use W, A, S, and D, or the arrow keys, to move around.","","");
+        yield return new WaitUntil(() => playerClicked);
+
+        playerClicked = false;
+        dialogue.ShowDialogue("The Courier is about to hand you a letter. Stay in place, it'll make the delivery much easier.","","");
+        yield return new WaitUntil(() => playerClicked);
+        dialogue.HideDialogue();
+
+        // Courier walks in
         courier.MoveTo(playerTransform.position + new Vector3(1.5f, 0, 0));
         yield return new WaitUntil(() => Vector3.Distance(courier.transform.position, playerTransform.position + new Vector3(1.5f, 0, 0)) < 0.1f);
         player.GetComponent<SpriteRenderer>().flipX = true;
 
-        // 2. Dialogue
+        // Dialogue
         playerClicked = false;
         dialogue.ShowDialogue("I've been looking for you. Got something I'm supposed to deliver - your hands only.", "", "");
         yield return new WaitUntil(() => playerClicked);
@@ -49,46 +59,33 @@ public class IntroductionSceneManager : MonoBehaviour
         yield return new WaitUntil(() => playerClicked);
         dialogue.HideDialogue();
 
-        // 3. Courier leaves
+        // Courier leaves
         courier.GetComponent<SpriteRenderer>().flipX = true;
-        courier.MoveTo(new Vector3(11.5f, courier.transform.position.y, 0));
-        yield return new WaitUntil(() => Vector3.Distance(courier.transform.position, new Vector3(11.5f, courier.transform.position.y, 0)) < 0.1f);
+        courier.MoveTo(new Vector3(11.5f, 0, 0)); // y = courier.transform.position.y
+        yield return new WaitUntil(() => Vector3.Distance(courier.transform.position, new Vector3(11.5f, 0, 0)) < 0.1f);
 
-        // 4. Player thinking
+        // Player thinking
         playerClicked = false;
         dialogue.ShowDialogue("", "I guess I should open this letter...", "");
         yield return new WaitUntil(() => playerClicked);
         dialogue.HideDialogue();
 
-        // 5. Open letter (UI handles button click)
-        letterUI.OpenLetter();
-        yield return new WaitUntil(() => !letterUI.gameObject.activeSelf);
+        // Open letter (UI handles button click)
+        letterUI.OpenPaper();
+        yield return new WaitUntil(() => !letterUI.getPaperCanvas().activeSelf);
 
-        // 6.a Store player spawn position in scene handler data class
+        // Store player spawn position in scene handler data class
         SceneHandlerData.playerSpawnPos = new Vector2(-3,0);
-        // 6. Player moves right (simulate walk)
-        // Debug.Log("Player entering movement state");
-        // Vector3 exitPos = new Vector3(11.5f, playerTransform.position.y, 0);
-        // while (Vector3.Distance(playerTransform.position, exitPos) > 0.1f)
-        // {
-        //     Debug.Log("Player moving");
-        //     // player.position = Vector3.MoveTowards(player.position, exitPos, 2f * Time.deltaTime);
-        //     playerRB.MovePosition(Vector2.MoveTowards(playerRB.position, exitPos, 2f * Time.deltaTime));
-        //     yield return null;
-        // }
-        // Debug.Log("Player done moving");
+        
+        // Load next scene
+        playerClicked = false;
+        dialogue.ShowDialogue("Follow the courier, to the very center-right side of the screen. Here, you will catch a boat to Gooseville to meet with Ankig the Prince Goose.","","");
+        yield return new WaitUntil(() => playerClicked);
+        dialogue.HideDialogue();
 
-        // 7. Fade to black
-        // StartCoroutine(FadeController.Instance.FadeOut(1f));
-        // fadePanel.gameObject.SetActive(true);
-        // for (float t = 0; t < 1; t += Time.deltaTime)
-        // {
-        //     fadePanel.alpha = t;
-        //     yield return null;
-        // }
-
-        // 8. Load next scene
         playerMovement.canMove = true;
+
+        QuestHandlerData.setQuestActive(0); // sets "Talk to sailor" quest active
     }
 
     public void OnPlayerClick()

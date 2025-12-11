@@ -18,6 +18,11 @@ public class DialogueManager : MonoBehaviour
         dialogueNext.gameObject.SetActive(false);
         dialogueText.text = NPCText;
 
+        // If no NPC dialogue is given, this will add the "Next" button to our thoughts.
+        if (NPCText == "")
+        {
+            dialogueNext.gameObject.SetActive(true);
+        }
         // If a first option is given
         if (option0 != "")
         {
